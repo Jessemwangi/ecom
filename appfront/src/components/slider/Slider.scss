@@ -4,9 +4,10 @@
 position: relative;
 
   .container {
-    width: 300vw;
+  //  overflow: hidden;
     display: flex;
     height: 100%;
+    transition: all 1s ease;
     // transform: translateX(-100vw);
 
     img {
