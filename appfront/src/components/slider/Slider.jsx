@@ -11,16 +11,17 @@ const Slider = () => {
         'https://source.unsplash.com/1000x1000/?dress',
         'https://source.unsplash.com/1000x1000/?bags',
         'https://source.unsplash.com/1000x1000/?shirts',
-        'https://source.unsplash.com/1000x1000/?newarrivals',
-        'https://source.unsplash.com/1000x1000/?babycloths',
+        'https://source.unsplash.com/1000x1000/?clothes',
+        'https://source.unsplash.com/1000x1000/?pajamas',
     ]
 
     const prevSlide = () =>{
-      console.log(currentSlide)
-setCurrentSlide(currentSlide === 0 ? images.length : (prev) => prev - 1 )
+      console.log(currentSlide, images.length)
+setCurrentSlide(currentSlide === 0 ? images.length - 1 : (prev) => prev - 1 )
     }
     const nextSlide = () =>{
-      setCurrentSlide(currentSlide === images.length ? 0 : (prev) => prev + 1 )
+      console.log(currentSlide, images.length)
+      setCurrentSlide(currentSlide === images.length -1  ? 0 : (prev) => prev + 1 )
     }
   return (
     <div className="slider">
@@ -30,6 +31,7 @@ setCurrentSlide(currentSlide === 0 ? images.length : (prev) => prev - 1 )
         <img src={images[2]} alt="" />
         <img src={images[3]} alt="" />
         <img src={images[4]} alt="" />
+        <img src={images[5]} alt="" />
       </div>
       <div className="icons">
         <div className="icon" onClick={prevSlide}>
