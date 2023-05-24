@@ -15,7 +15,7 @@ const Categories = () => {
                 <div className="row">
                     <img src="https://source.unsplash.com/400x300/?kids" alt="" />
                     <button>
-                        <Link className='link' to={'/product/2'}>Kidwear</Link>
+                        <Link className='link' to={'/product/2'}>Kidswear</Link>
                        </button>
                 </div>
             </div>
