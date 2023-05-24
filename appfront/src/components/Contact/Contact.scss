@@ -1,0 +1,42 @@
+.contact {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    .mail {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      
+
+      .send {
+        border: none;
+        background: rgb(66, 66, 66);
+        padding: 10px;
+        border-radius: 0 5px 5px 0;
+        border-right: solid 1px black;
+        border-top: solid 1px black;
+        border-bottom: solid 1px black;
+        cursor: pointer;
+        color: aliceblue;
+      }
+
+      input {
+        padding: 10px;
+        border-right: none;
+        border-left: solid 1px black;
+        border-top: solid 1px black;
+        border-bottom: solid 1px black;
+        border-radius: 5px 0 0 5px;
+      }
+
+
+    }
+  }
+}

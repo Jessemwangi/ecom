@@ -31,10 +31,15 @@
     .left {
 display: flex;
 align-items: center;
+flex-direction: column;
       .logo {
      font-weight: bold;
      font-size: 24px;
         color: rgb(41, 62, 125);
+
+        img{
+          width: 80px;
+        }
       }
 
       .copyright {
