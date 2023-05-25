@@ -1,12 +1,12 @@
-import React from 'react';
-import './Product.scss'
+import React from "react";
+import "./Product.scss";
 
 const Product = () => {
-    return (
-        <div>
-            <h1>Product</h1>
-        </div>
-    );
+  return (
+    <div className="product">
+
+    </div>
+  );
 };
 
 export default Product;
