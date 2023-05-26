@@ -8,6 +8,8 @@ export const items = [
     isNew: true,
     img: "https://source.unsplash.com/300x400/?shoes",
     img2: "https://source.unsplash.com/300x400/?shoe",
+    img3: "https://source.unsplash.com/300x400/?sandles",
+    img4: "https://source.unsplash.com/300x400/?boots",
     oldPrice: 50,
     price: 40,
     id: 1,
