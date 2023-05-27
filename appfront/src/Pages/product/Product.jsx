@@ -7,9 +7,11 @@ import CompareOutlinedIcon from "@mui/icons-material/CompareOutlined";
 import { Slider } from "@mui/material";
 
 const Product = () => {
+  const color = ["red", "green", "blue", "pink", "white", "black"];
   const [selectedImg, setSelectedImg] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const images_ = items[0];
+  const [validationError, setValidationError] = useState("");
   const images = [images_.img, images_.img2, images_.img3, images_.img4];
 
   return (
@@ -45,12 +47,32 @@ const Product = () => {
           >
             -
           </button>
-          <span className="totalSelected">
-          {quantity}
-          </span>
-          
+          <span className="totalSelected">{quantity}</span>
+
           <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
         </div>
+        <div className="color">
+          <select className="select">
+            <option value="">Select an color</option>{" "}
+            {/* Default/placeholder option */}
+            {color.map((col, index) => (
+              <option key={index} value={col} className="options">
+                {col}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="size">
+          <h3>Size</h3>
+          <div className="item">
+        {color.map((col, index) => (
+          <span key={index}>
+            {index + 20/100}
+          </span>
+        ))}
+          </div>
+        </div>
+
         <button className="add">
           <AddShoppingCartOutlinedIcon />
         </button>
@@ -79,7 +101,7 @@ const Product = () => {
           <div className="review">
             <h4>leave a review</h4>
             <div className="reviewSlider">
-              0 <Slider sx={{color:'purple'}} /> 5
+              0 <Slider sx={{ color: "purple" }} /> 5
             </div>
           </div>
         </div>
