@@ -12,7 +12,9 @@ margin-bottom: 50px;
     position: relative;
 
     &:hover{
-z-index: 2;
+        .secondImg{
+            z-index: 2;
+        }
     }
 
     img{
@@ -23,17 +25,18 @@ z-index: 2;
 
     }
 
-    .mainImage{
+    .mainImg{
         z-index: 1;
     }
     span{
         position: absolute;
+        padding: 9px;
         top: 50px;
-        left: 5px;
+        left: 0px;
         background-color: white;
-        color: lightblue;
+        color: purple;
         z-index: 3;
-        font-weight: 500;
+        font-weight: 700;
         font-size: 12px;
     }
 }

@@ -16,7 +16,7 @@
       "type": "string"
     },
     "desc": {
-      "type": "text"
+      "type": "string"
     },
     "price": {
       "type": "decimal"
@@ -52,10 +52,15 @@
       "multiple": true,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "normal",
+        "featured",
+        "trending"
       ]
     }
   }
