@@ -13,7 +13,7 @@ const Card = ({ item }) => {
     <Link className="link" to={`/product/${item.id}`}>
       <div className="card">
         <div className="image">
-          {item.attributes.isNew && <span>New arrivals</span>}
+          {item?.attributes?.isNew && <span>New arrivals</span>}
 
           <img
             src={
@@ -34,10 +34,10 @@ const Card = ({ item }) => {
             alt=""
           />
         </div>
-        <h2>{item.attributes.title}</h2>
+        <h2>{item?.attributes?.title}</h2>
         <div className="prices">
-          <h3>{item.attributes.oldPrice || item.attributes.price + 10}</h3>
-          <h3>{item.attributes.price}</h3>
+          <h3>{item?.attributes?.oldPrice || item?.attributes?.price + 10}</h3>
+          <h3>{item?.attributes?.price}</h3>
         </div>
       </div>
     </Link>

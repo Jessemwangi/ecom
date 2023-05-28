@@ -14,6 +14,12 @@ const Product = () => {
   const [validationError, setValidationError] = useState("");
   const images = [images_.img, images_.img2, images_.img3, images_.img4];
 
+  // const { data, loading, error } = UseFetch(
+  //   `/products?populate=*&[filters][categories][id]=${catId}${subCats.map(
+  //     (item) => `&[filters][sub_categories][id][$eq]=${item}`
+  //   )}&[filters][price][$lte]=${maxPrice}&sort=price:${sort} `
+  // );
+
   return (
     <div className="product">
       <div className="left">
