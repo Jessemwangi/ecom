@@ -1,6 +1,8 @@
 import axios from "axios";
 const token = process.env.REACT_APP_API_TOKEN;
 
+export const server = process.env.REACT_APP_SERVER
+
 export const makeRequest = axios.create(
     {
         baseURL: process.env.REACT_APP_API_URL,
@@ -10,3 +12,4 @@ export const makeRequest = axios.create(
           }
     }
 )
+

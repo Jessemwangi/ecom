@@ -62,6 +62,15 @@
         "featured",
         "trending"
       ]
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "productsizes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::productsize.productsize",
+      "mappedBy": "products"
     }
   }
 }

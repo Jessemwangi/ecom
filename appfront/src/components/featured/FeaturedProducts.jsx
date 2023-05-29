@@ -55,7 +55,7 @@ export const items = [
       "Our collection of men's and women's clothing encompasses a wide array of styles, from casual everyday wear to formal attire. Browse through our selection of tops, bottoms, outerwear",
   },
 ];
-const token = process.env.REACT_APP_API_TOKEN;
+
 const FeaturedProducts = ({ type }) => {
   const { data, loading, error } = UseFetch(
     `/products?populate=*&[filters][type][$eq]=${type}`
