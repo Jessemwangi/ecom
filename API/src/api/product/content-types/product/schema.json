@@ -62,6 +62,12 @@
         "featured",
         "trending"
       ]
+    },
+    "product_inventory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-inventory.product-inventory",
+      "inversedBy": "products"
     }
   }
 }

@@ -37,6 +37,12 @@
       "relation": "manyToMany",
       "target": "api::sub-category.sub-category",
       "inversedBy": "categories"
+    },
+    "product_inventories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product-inventory.product-inventory",
+      "mappedBy": "categories"
     }
   }
 }
