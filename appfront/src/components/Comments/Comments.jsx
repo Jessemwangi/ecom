@@ -3,26 +3,26 @@ import './Comment.scss'
 
 const Comments = () => {
   return (
-    <div class="comments-container">
-      <h1 class="main-heading">comments</h1>
-      <ul class="comments-list">
+    <div className="comments-container">
+      <h1 className="main-heading">comments</h1>
+      <ul className="comments-list">
         <li>
-          <div class="comment-main-level">
-            <div class="comment-avatar">
+          <div className="comment-main-level">
+            <div className="comment-avatar">
               <img
                 src="http://younginnovations.com.np/images/staffs/Rakesh.png"
                 alt=""
               />
             </div>
 
-            <div class="comment-box">
-              <div class="comment-head">
-                <h6 class="comment-name by-author">
+            <div className="comment-box">
+              <div className="comment-head">
+                <h6 className="comment-name by-author">
                   <a href="">linkk plusplus</a>
                 </h6>
                 <span>have 20 minutes</span>
               </div>
-              <div class="comment-content">
+              <div className="comment-content">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit
                 omnis animi et iure laudantium vitae, praesentium optio,
                 sapiente distinctio illo?
@@ -30,24 +30,24 @@ const Comments = () => {
             </div>
           </div>
 
-          <ul class="reply-list">
+          <ul className="reply-list">
             <li>
-              <div class="comment-main-level">
-                <div class="comment-avatar">
+              <div className="comment-main-level">
+                <div className="comment-avatar">
                   <img
                     src="http://younginnovations.com.np/images/staffs/Biju.png"
                     alt=""
                   />
                 </div>
 
-                <div class="comment-box">
-                  <div class="comment-head">
-                    <h6 class="comment-name">
+                <div className="comment-box">
+                  <div className="comment-head">
+                    <h6 className="comment-name">
                       <a href="">linkk plusplus</a>
                     </h6>
                     <span>have 7 minutes</span>
                   </div>
-                  <div class="comment-content">
+                  <div className="comment-content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Velit omnis animi et iure laudantium vitae, praesentium
                     optio, sapiente distinctio illo?
@@ -55,24 +55,24 @@ const Comments = () => {
                 </div>
               </div>
 
-              <ul class="reply-list">
+              <ul className="reply-list">
                 <li>
-                  <div class="comment-main-level">
-                    <div class="comment-avatar">
+                  <div className="comment-main-level">
+                    <div className="comment-avatar">
                       <img
                         src="http://younginnovations.com.np/images/staffs/Rakesh.png"
                         alt=""
                       />
                     </div>
 
-                    <div class="comment-box">
-                      <div class="comment-head">
-                        <h6 class="comment-name by-author">
+                    <div className="comment-box">
+                      <div className="comment-head">
+                        <h6 className="comment-name by-author">
                           <a href="g">linkk plusplus</a>
                         </h6>
                         <span>have 2 minutes</span>
                       </div>
-                      <div class="comment-content">
+                      <div className="comment-content">
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Velit omnis animi et iure laudantium vitae,
                         praesentium optio, sapiente distinctio illo?
@@ -81,24 +81,24 @@ const Comments = () => {
                   </div>
                 </li>
 
-                <ul class="reply-list">
+                <ul className="reply-list">
                   <li>
-                    <div class="comment-main-level">
-                      <div class="comment-avatar">
+                    <div className="comment-main-level">
+                      <div className="comment-avatar">
                         <img
                           src="http://younginnovations.com.np/images/staffs/Biju.png"
                           alt=""
                         />
                       </div>
 
-                      <div class="comment-box">
-                        <div class="comment-head">
-                          <h6 class="comment-name">
+                      <div className="comment-box">
+                        <div className="comment-head">
+                          <h6 className="comment-name">
                             <a href="">linkk plusplus</a>
                           </h6>
                           <span>have 10 minutes</span>
                         </div>
-                        <div class="comment-content">
+                        <div className="comment-content">
                           Lorem ipsum dolor sit amet, consectetur adipisicing
                           elit. Velit omnis animi et iure laudantium vitae,
                           praesentium optio, sapiente distinctio illo?
@@ -106,24 +106,24 @@ const Comments = () => {
                       </div>
                     </div>
 
-                    <ul class="reply-list">
+                    <ul className="reply-list">
                       <li>
-                        <div class="comment-main-level">
-                          <div class="comment-avatar">
+                        <div className="comment-main-level">
+                          <div className="comment-avatar">
                             <img
                               src="http://younginnovations.com.np/images/staffs/Sweta.png"
                               alt=""
                             />
                           </div>
 
-                          <div class="comment-box">
-                            <div class="comment-head">
-                              <h6 class="comment-name">
+                          <div className="comment-box">
+                            <div className="comment-head">
+                              <h6 className="comment-name">
                                 <a href="">linkk plusplus</a>
                               </h6>
                               <span>have 30 minutes</span>
                             </div>
-                            <div class="comment-content">
+                            <div className="comment-content">
                               Lorem ipsum dolor sit amet, consectetur
                               adipisicing elit. Velit omnis animi et iure
                               laudantium vitae, praesentium optio, sapiente
@@ -136,22 +136,22 @@ const Comments = () => {
                   </li>
 
                   <li>
-                    <div class="comment-main-level">
-                      <div class="comment-avatar">
+                    <div className="comment-main-level">
+                      <div className="comment-avatar">
                         <img
                           src="http://younginnovations.com.np/images/staffs/Rakesh.png"
                           alt=""
                         />
                       </div>
 
-                      <div class="comment-box">
-                        <div class="comment-head">
-                          <h6 class="comment-name by-author">
+                      <div className="comment-box">
+                        <div className="comment-head">
+                          <h6 className="comment-name by-author">
                             <a href="">linkk plusplus</a>
                           </h6>
                           <span>have 10 minutes</span>
                         </div>
-                        <div class="comment-content">
+                        <div className="comment-content">
                           Lorem ipsum dolor sit amet, consectetur adipisicing
                           elit. Velit omnis animi et iure laudantium vitae,
                           praesentium optio, sapiente distinctio illo?
@@ -165,22 +165,22 @@ const Comments = () => {
           </ul>
         </li>
         <li>
-          <div class="comment-main-level">
-            <div class="comment-avatar">
+          <div className="comment-main-level">
+            <div className="comment-avatar">
               <img
                 src="http://younginnovations.com.np/images/staffs/Sumit.png"
                 alt=""
               />
             </div>
 
-            <div class="comment-box">
-              <div class="comment-head">
-                <h6 class="comment-name by-author">
+            <div className="comment-box">
+              <div className="comment-head">
+                <h6 className="comment-name by-author">
                   <a href="">linkk plusplus</a>
                 </h6>
                 <span>have 20 minutes</span>
               </div>
-              <div class="comment-content">
+              <div className="comment-content">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit
                 omnis animi et iure laudantium vitae, praesentium optio,
                 sapiente distinctio illo?
@@ -189,22 +189,22 @@ const Comments = () => {
           </div>
         </li>
         <li>
-          <div class="comment-main-level">
-            <div class="comment-avatar">
+          <div className="comment-main-level">
+            <div className="comment-avatar">
               <img
                 src="http://younginnovations.com.np/images/staffs/Nirajan.png"
                 alt=""
               />
             </div>
 
-            <div class="comment-box">
-              <div class="comment-head">
-                <h6 class="comment-name by-author">
+            <div className="comment-box">
+              <div className="comment-head">
+                <h6 className="comment-name by-author">
                   <a href="/">link +++</a>
                 </h6>
                 <span>have 5 minutes</span>
               </div>
-              <div class="comment-content">
+              <div className="comment-content">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit
                 omnis animi et iure laudantium vitae, praesentium optio,
                 sapiente distinctio illo?

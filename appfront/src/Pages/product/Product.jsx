@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react";
 import "./Product.scss";
-import { items } from "../../components/featured/FeaturedProducts";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import CompareOutlinedIcon from "@mui/icons-material/CompareOutlined";
@@ -20,11 +19,13 @@ const Product = () => {
   const [bgcolor, setbgColor] = useState('purple')
   const [selectedImg, setSelectedImg] = useState(0);
   const [quantity, setQuantity] = useState(0);
-  const images_ = items[0];
   const [validationError, setValidationError] = useState("");
 
-const handleColorChange = (color) => {
-console.log(color)
+const handleColorChange = (e) => {
+  e.preventDefault();
+  const color =e.target.value !==''? e.target.value : 'purple'
+  setbgColor(color.toLowerCase())
+console.log(e.target.value)
 }
   console.log(data)
   return (
@@ -46,7 +47,7 @@ console.log(color)
                 <img
                   src={server + pic.attributes?.url}
                   alt=""
-                  key={index}
+                  key={pic.attributes.id}
                   onClick={(e) => setSelectedImg(index)}
                 />
               ))}
@@ -74,15 +75,13 @@ console.log(color)
               <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
             </div>
             <div className="color">
-              <select className="select" style={{background:bgcolor, color:bgcolor ==='white'? 'purple' : 'white'}}>
+              <select className="select" onChange={(e) => handleColorChange(e)}
+              style={{background:bgcolor, color:bgcolor ==='white'? 'purple' : 'white'}}>
                 <option value="">Select an color</option>{" "}
                 {/* Default/placeholder option */} 
                 {data?.attributes?.colors?.data.map((col) => (
                   <option key={col?.attributes?.id} value={col?.attributes?.name} className="options"
-                   onChange={() => {
-                    setbgColor(col?.attributes?.name);
-                    handleColorChange (col?.attributes?.name);
-                   }}>
+                   >
                     {col?.attributes?.name}
                   </option>
                 ))}
@@ -142,7 +141,7 @@ console.log(color)
         </div>
         )
       }
-    
+    {error ? 'error has occured ': ''}
 
     </Fragment>
 
