@@ -63,11 +63,14 @@
         "trending"
       ]
     },
-    "product_inventory": {
+    "quantity": {
+      "type": "integer"
+    },
+    "productsizes": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::product-inventory.product-inventory",
-      "inversedBy": "products"
+      "relation": "manyToMany",
+      "target": "api::productsize.productsize",
+      "mappedBy": "products"
     }
   }
 }

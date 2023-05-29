@@ -40,9 +40,28 @@ margin-bottom: 50px;
         font-size: 12px;
     }
 }
-h2{
-    font-size: 16px;
-    font-weight: 400;
+.itemDetails {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+
+
+    h2{
+        font-size: 16px;
+        font-weight: 400;
+        flex:1;
+        width: 40%;
+    }
+    .colors{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 5px;
+        flex:1;
+       flex-wrap: wrap;
+    }
 }
 .prices{
     display: flex;
