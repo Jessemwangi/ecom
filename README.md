@@ -1,4 +1,5 @@
-# 🛍️ KUGUZA Ecom
+# 🛍️ KUGUZA Ecom 
+dev Link:https://kuguza.vercel.app/
 
 **KUGUZA Ecom** is a modern e-commerce web application that allows users to browse, preview, and purchase products with ease. Built using **React** for the frontend and **Strapi** for the backend, it leverages a **PostgreSQL** database for persistent storage. The platform supports multiple payment options including **Visa**, **PayPal**, **M-Pesa**, and **MasterCard**.
 
