@@ -39,18 +39,18 @@ dev Link:https://kuguza.vercel.app/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/kuguza-ecom.git
-cd kuguza-ecom
+git clone hhttps://github.com/Jessemwangi/ecom.git
+cd appfront
 ```
 
 ### 2. Setup Backend (Strapi)
 
 ```bash
-cd backend
+cd API
 npm install
 ```
 
-Create a `.env` file in the `backend/` directory:
+Create a `.env` file in the `API/` directory:
 
 ```env
 DATABASE_CLIENT=postgres
@@ -77,7 +77,7 @@ npm run develop
 ### 3. Setup Frontend (React)
 
 ```bash
-cd ../client
+cd ../appfront
 npm install
 npm start
 ```
@@ -88,8 +88,8 @@ npm start
 
 ```
 kuguza-ecom/
-├── client/          # React frontend
-├── backend/         # Strapi backend
+├── appfront/          # React frontend
+├── API/         # Strapi backend
 ├── README.md
 ```
 
@@ -158,9 +158,9 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ## 📬 Contact
 
-- **Developer:** [Your Name]
-- **Email:** [your.email@example.com]
-- **GitHub:** [@your-username](https://github.com/your-username)
+- **Developer:** Jesse Mwangi
+- **Email:** jessejzee@gmail.com
+- **GitHub:** @Jessemwangi (https://github.com/Jessemwangi)
 
 ---
 
@@ -170,7 +170,7 @@ This project is open-source and available under the [MIT License](LICENSE).
 - [Strapi](https://strapi.io/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [PayPal Developer](https://developer.paypal.com/)
-- [M-Pesa Daraja API](https://developer.safaricom.co.ke/)
+- [M-Pesa Daraja API Kenya](https://developer.safaricom.co.ke/)
 - [Stripe](https://stripe.com/)
 
 ---
