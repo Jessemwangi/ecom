@@ -10,8 +10,7 @@ const Card = ({ item }) => {
   const number = item?.attributes?.images?.data?.length || 0;
   const randomIndex = Math.floor(Math.random() * number);
 
-  const img2 = randomIndex ===0 ? randomIndex + 1 : randomIndex - 1
-  
+  const img2 = randomIndex ===0 ? randomIndex + 1 : randomIndex - 1;
   return (
     <Link className="link" to={`/product/${item.id}`}>
       <div className="card">
@@ -21,9 +20,7 @@ const Card = ({ item }) => {
           <img
             src={
               server+
-              item?.attributes?.images?.data[
-                randomIndex
-              ].attributes?.url
+              item?.images?.[randomIndex].url
             }
             className="mainImg"
             alt=""
@@ -31,7 +28,7 @@ const Card = ({ item }) => {
           <img
             src={
               server +
-              item?.attributes?.images?.data[img2].attributes.url
+              item?.images?.[img2].url
             }
             className="secondImg"
             alt=""
@@ -39,7 +36,7 @@ const Card = ({ item }) => {
         </div>
         <div className="itemDetails">
 
-        <h2>{item?.attributes?.title}</h2>
+        <h2>{item?.title}</h2>
         <div className="colors">
           
       { item?.attributes?.colors?.data.map(color => 
@@ -51,8 +48,8 @@ const Card = ({ item }) => {
         </div>
         </div>
         <div className="prices">
-          <h3>{item?.attributes?.oldPrice || item?.attributes?.price + 10}</h3>
-          <h3>{item?.attributes?.price}</h3>
+          <h3>{item?.oldPrice || item?.price + 10}</h3>
+          <h3>{item?.price}</h3>
         </div>
       </div>
     </Link>
