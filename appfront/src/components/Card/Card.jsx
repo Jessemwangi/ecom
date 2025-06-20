@@ -29,10 +29,10 @@ const Card = ({ item }) => {
 
   
   return (
-    <Link className="link" to={`/product/${item.id}`}>
+    <Link className="link" to={`/product/${item.documentId}`}>
       <div className="card">
         <div className="image">
-          {item?.attributes?.isNew && <span>New arrivals</span>}
+          {item?.isNew && <span>New arrivals</span>}
           <img
             src={mainImageUrl}
             className="mainImg"
@@ -47,10 +47,10 @@ const Card = ({ item }) => {
         <div className="itemDetails">
           <h2>{item?.title}</h2>
           <div className="colors">
-            {item?.attributes?.colors?.data?.map(color => 
+            {item?.colors?.data?.map(color => 
               <Color 
-                color={color?.attributes?.name?.toLowerCase()} 
-                key={`${item?.id}-${color?.attributes?.name}`} // Better key
+                color={color?.name?.toLowerCase()} 
+                key={`${item?.id}-${color?.name}`} // Better key
               />
             )}
           </div>
