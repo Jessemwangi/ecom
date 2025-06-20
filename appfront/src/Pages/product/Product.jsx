@@ -6,7 +6,6 @@ import CompareOutlinedIcon from "@mui/icons-material/CompareOutlined";
 import { Slider } from "@mui/material";
 import UseFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
-import { server } from "../../Utility/functions";
 import Comments from "../../components/Comments/Comments";
 import { buildImageUrl } from "../../Utility/imageHelper";
 
@@ -20,7 +19,6 @@ const Product = () => {
   const [bgcolor, setbgColor] = useState('purple')
   const [selectedImg, setSelectedImg] = useState(0);
   const [quantity, setQuantity] = useState(0);
-  const [validationError, setValidationError] = useState("");
 
 const handleColorChange = (e) => {
   e.preventDefault();
