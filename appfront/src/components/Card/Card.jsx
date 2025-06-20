@@ -2,12 +2,13 @@ import React from "react";
 import "./Card.scss";
 import { Link } from "react-router-dom";
 import Color from "../Color/Color";
-import { server } from "../../Utility/functions";
+import { buildImageUrl } from "../../Utility/imageHelper";
 
 const Card = ({ item }) => {
   const images = item?.images || [];
   const hasImages = images.length > 0;
   
+ 
   // Only calculate random indices if we have images
   let randomIndex = 0;
   let img2Index = 0;
@@ -20,11 +21,11 @@ const Card = ({ item }) => {
   }
   
   // Fallback image URL (you might want to add a placeholder image)
-  const fallbackImage = "/path/to/placeholder-image.jpg"; // Replace with your placeholder
+  const fallbackImage = "https://picsum.photos/300/400?random=10"; // Replace with your placeholder
   
-  const mainImageUrl = hasImages ? server + images[randomIndex]?.url : fallbackImage;
+  const mainImageUrl = hasImages ? buildImageUrl(images[randomIndex]?.url) : fallbackImage;
   const secondImageUrl = hasImages && images.length > 1 
-    ? server + images[img2Index]?.url 
+    ? buildImageUrl(images[img2Index]?.url)
     : mainImageUrl; // Use main image as fallback for second image
 
   
