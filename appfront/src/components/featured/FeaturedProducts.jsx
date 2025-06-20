@@ -5,83 +5,93 @@ import UseFetch from "../../hooks/useFetch";
 
 export const items = [
   {
-    title: "Item 1",
+    title: "Premium Athletic Shoes",
     isNew: true,
-    img: "https://source.unsplash.com/300x400/?shoes",
-    img2: "https://source.unsplash.com/300x400/?shoe",
-    img3: "https://source.unsplash.com/300x400/?sandles",
-    img4: "https://source.unsplash.com/300x400/?boots",
+    img: "https://picsum.photos/300/400?random=1",
+    img2: "https://picsum.photos/300/400?random=2",
+    img3: "https://picsum.photos/300/400?random=3",
+    img4: "https://picsum.photos/300/400?random=4",
     oldPrice: 50,
     price: 40,
     id: 1,
     dateCreated: "2023-05-24",
     description:
-      "Explore our extensive shoe collection that combines fashion, comfort, and durability. Whether you're searching for trendy sneakers, elegant heels, casual flats, or sturdy boots, we have the perfect pair for every occasion and outfit",
+      "Step into comfort and style with our premium athletic footwear collection. Engineered for performance and designed for everyday wear, featuring advanced cushioning technology and breathable materials that keep you moving all day long.",
   },
   {
-    title: "Item 2",
+    title: "Designer Handbags",
     isNew: false,
-    img: "https://source.unsplash.com/300x400/?bags",
-    img2: "https://source.unsplash.com/300x400/?bag",
+    img: "https://picsum.photos/300/400?random=5",
+    img2: "https://picsum.photos/300/400?random=6",
     oldPrice: 30,
     price: 25,
     id: 2,
     dateCreated: "2023-05-23",
     description:
-      "Discover our stunning collection of dresses that will elevate your style to new heights. From elegant evening gowns to chic cocktail dresses, we have options to suit different tastes and body types",
+      "Elevate your accessory game with our curated selection of designer handbags. Crafted from premium materials with attention to detail, these bags seamlessly blend functionality with sophisticated style for the modern woman.",
   },
   {
-    title: "Item 3",
+    title: "Elegant Evening Dresses",
     isNew: true,
-    img: "https://source.unsplash.com/300x400/?dress",
-    img2: "https://source.unsplash.com/300x400/?dress",
+    img: "https://picsum.photos/300/400?random=7",
+    img2: "https://picsum.photos/300/400?random=8",
     oldPrice: 80,
     price: 60,
     id: 3,
     dateCreated: "2023-05-22",
     description:
-      "Dress up your little ones with our adorable and fashionable kidswear. Our children's clothing range combines comfort and style, featuring cute designs and quality materials.",
+      "Make a statement at your next special occasion with our collection of elegant evening dresses. From flowing maxi dresses to chic cocktail styles, each piece is designed to flatter and make you feel confidently beautiful.",
   },
   {
-    title: "Item 4",
+    title: "Trendy Accessories",
     isNew: true,
-    img: "https://source.unsplash.com/300x400/?hats",
-    img2: "https://source.unsplash.com/300x400/?caps",
+    img: "https://picsum.photos/300/400?random=9",
+    img2: "https://picsum.photos/300/400?random=10",
     oldPrice: 20,
     price: 15,
     id: 4,
     dateCreated: "2023-05-21",
     description:
-      "Our collection of men's and women's clothing encompasses a wide array of styles, from casual everyday wear to formal attire. Browse through our selection of tops, bottoms, outerwear",
+      "Complete your look with our versatile collection of fashion accessories. From statement hats to casual caps, our accessories add the perfect finishing touch to any outfit while providing both style and functionality.",
   },
 ];
+
+// Category-specific descriptions for the top section
+const getCategoryDescription = (type) => {
+  const descriptions = {
+    featured: "Discover our handpicked selection of premium products that combine quality craftsmanship with contemporary design. Each featured item represents the perfect balance of style, functionality, and value.",
+    trending: "Stay ahead of the fashion curve with our trending collection. These popular items are flying off our shelves and represent the latest in style and innovation that our customers can't get enough of.",
+    new: "Be the first to experience our newest arrivals, carefully curated to bring you the latest trends and innovations. Fresh designs that set tomorrow's style standards, available today.",
+    bestsellers: "These customer favorites have earned their place as our top-selling items. Proven quality, exceptional style, and outstanding value make these products the go-to choice for discerning shoppers.",
+    sale: "Don't miss these incredible deals on premium products. Limited-time offers on high-quality items that deliver exceptional value without compromising on style or craftsmanship.",
+    default: "Explore our carefully curated collection of premium products designed to enhance your lifestyle. Quality craftsmanship meets contemporary design in every piece we offer."
+  };
+  
+  return descriptions[type?.toLowerCase()] || descriptions.default;
+};
 
 const FeaturedProducts = ({ type }) => {
   const { data, loading, error } = UseFetch(
     `/products?populate=*&[filters][type][$eq]=${type}`
   );
+  
   console.log(data);
-  // if (loading) return <h1>Loading ...</h1>
-
+  
   return (
     <div className="featuresProduct">
       <div className="top">
         <h1>{type} Products</h1>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam, ut
-          ducimus eos nobis delectus explicabo unde natus eveniet
-          necessitatibus, non exercitationem soluta! Perspiciatis fugiat sit
-          possimus earum dolores quos nam.
+          {getCategoryDescription(type)}
         </p>
       </div>
       <div className="bottom">
-        {
-        error
-          ? "error occured"
+        {error
+          ? "Error occurred while loading products"
           : loading
-          ? "Loading"
-          : data.map((item) => <Card item={item} key={item.id} />)
-          }
+          ? "Loading amazing products..."
+          : data?.map((item) => <Card item={item} key={item.id} />)
+        }
       </div>
     </div>
   );

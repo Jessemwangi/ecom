@@ -6,14 +6,15 @@ import './Slider.scss'
 const Slider = () => {
   const [currentSlide, setCurrentSlide]= useState(0)
 
-    const images = [
-        'https://source.unsplash.com/1000x1000/?shoes',
-        'https://source.unsplash.com/1000x1000/?dress',
-        'https://source.unsplash.com/1000x1000/?bags',
-        'https://source.unsplash.com/1000x1000/?shirts',
-        'https://source.unsplash.com/1000x1000/?clothes',
-        'https://source.unsplash.com/1000x1000/?pajamas',
-    ]
+const images = [
+  'https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg',
+  'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg',
+  'https://images.pexels.com/photos/298864/pexels-photo-298864.jpeg',
+  'https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg',
+  'https://images.pexels.com/photos/2983465/pexels-photo-2983465.jpeg',
+  'https://images.pexels.com/photos/2043590/pexels-photo-2043590.jpeg',
+];
+
 
     const prevSlide = () =>{
       console.log(currentSlide, images.length)
