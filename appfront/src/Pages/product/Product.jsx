@@ -8,6 +8,7 @@ import UseFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { server } from "../../Utility/functions";
 import Comments from "../../components/Comments/Comments";
+import { buildImageUrl } from "../../Utility/imageHelper";
 
 const Product = () => {
   const id = useParams().id;
@@ -43,26 +44,26 @@ console.log(e.target.value)
           
           <div className="left">
             <div className="images">
-              {data && data?.attributes?.images?.data.map((pic, index) => (
+              {data && data?.images.map((pic, index) => (
                 <img
-                  src={server + pic.attributes?.url}
+                  src={buildImageUrl(pic?.url)}
                   alt=""
-                  key={pic.attributes.id}
+                  key={pic.id}
                   onClick={(e) => setSelectedImg(index)}
                 />
               ))}
             </div>
             <div className="mainImg">
-              <img src={server + data?.attributes?.images?.data[selectedImg].attributes?.url} alt="preview" />
+              <img src={buildImageUrl(data?.images[selectedImg]?.url)} alt="preview" />
             </div>
           </div>
     
           <div className="right">
-            <h1>{data?.attributes?.title}</h1>
-            <span className="price">Price ${data?.attributes?.price} </span>
-            <span className="quantity">In store #{data?.attributes?.quantity} </span>
+            <h1>{data?.title}</h1>
+            <span className="price">Price ${data?.price} </span>
+            <span className="quantity">In store #{data?.quantity} </span>
             <p>
-            {data?.attributes?.desc}
+            {data?.desc}
             </p>
             <div className="quantity">
               <button
@@ -79,10 +80,10 @@ console.log(e.target.value)
               style={{background:bgcolor, color:bgcolor ==='white'? 'purple' : 'white'}}>
                 <option value="">Select an color</option>{" "}
                 {/* Default/placeholder option */} 
-                {data?.attributes?.colors?.data.map((col) => (
-                  <option key={col?.attributes?.id} value={col?.attributes?.name} className="options"
+                {data?.colors?.map((col) => (
+                  <option key={col?.id} value={col?.name} className="options"
                    >
-                    {col?.attributes?.name}
+                    {col?.name}
                   </option>
                 ))}
               </select>
@@ -91,16 +92,16 @@ console.log(e.target.value)
               <h3>Size</h3>
               <div className="item">
             
-          {  data?.attributes?.productsizes?.data.map(size => 
-           <span key={size?.attributes?.id}>
-                {size?.attributes?.size}
+          {  data?.productsizes?.map(size => 
+           <span key={size?.id}>
+                {size?.size}
               </span>)
            
           }
           
               </div>
             </div>
-            attributes.productsizes.data[0].attributes.size
+            
             <button className="add">
               <AddShoppingCartOutlinedIcon />
             </button>
