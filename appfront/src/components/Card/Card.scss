@@ -1,80 +1,229 @@
-.card{
-width: 280px;
-display: flex;
-flex-direction: column;
-gap: 10px;
-margin-bottom: 50px;
+.card {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 50px;
 
-.image{
+  .image {
     width: 100%;
     height: 400px;
     overflow: hidden;
     position: relative;
+    background-color: #f5f5f5;
+    border-radius: 8px;
 
-    &:hover{
-        .secondImg{
-            z-index: 2;
-        }
-    }
-
-    img{
+    // Loading skeleton
+    .image-skeleton {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f0f0f0;
+      z-index: 1;
+      
+      .skeleton-shimmer {
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        position: absolute;
-
+        background: linear-gradient(
+          90deg,
+          #f0f0f0 25%,
+          #e0e0e0 50%,
+          #f0f0f0 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+      }
     }
 
-    .mainImg{
-        z-index: 1;
+    // Base image styles
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      transition: opacity 0.3s ease;
     }
-    span{
-        position: absolute;
-        padding: 9px;
-        top: 50px;
-        left: 0px;
-        background-color: white;
-        color: purple;
-        z-index: 3;
-        font-weight: 700;
-        font-size: 12px;
+
+    // Main image
+    .mainImg {
+      z-index: 2;
+      
+      &.loading {
+        opacity: 0;
+      }
+      
+      &.loaded {
+        opacity: 1;
+      }
     }
-}
-.itemDetails {
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
 
-
-    h2{
-        font-size: 16px;
-        font-weight: 400;
-        flex:1;
-        width: 40%;
-    }
-    .colors{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 5px;
-        flex:1;
-       flex-wrap: wrap;
-    }
-}
-.prices{
-    display: flex;
-    gap: 20px;
-
-    h3{
-        font-size: 18px;
-        font-weight: 500;
-
-        &:first-child{
-            color: grey;
-            text-decoration: line-through;
+    // Second image (hover effect)
+    .secondImg {
+      z-index: 1;
+      opacity: 0;
+      
+      &.loading {
+        opacity: 0;
+      }
+      
+        &.loaded {
+            opacity: 1;
         }
     }
+
+    // Hover effects
+    &:hover {
+      .mainImg.loaded {
+        opacity: 0;
+      }
+      
+      .secondImg.loaded {
+        opacity: 1;
+        z-index: 2;
+      }
+    }
+
+    // New arrival badge
+    span {
+      position: absolute;
+      padding: 9px;
+      top: 50px;
+      left: 0px;
+      background-color: white;
+      color: purple;
+      z-index: 3;
+      font-weight: 700;
+      font-size: 12px;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .itemDetails {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 400;
+      flex: 1;
+      width: 40%;
+      margin: 0;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    .colors {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+  }
+
+  .prices {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0;
+
+      &:first-child {
+        color: grey;
+        text-decoration: line-through;
+      }
+
+      &:last-child {
+        color: #333;
+      }
+    }
+  }
 }
+
+// Shimmer animation keyframes
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Responsive design
+@media (max-width: 1024px) {
+  .card {
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 30px;
+    
+    .image {
+      height: 350px;
+    }
+    
+    .itemDetails {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      
+      h2 {
+        width: 100%;
+        font-size: 15px;
+      }
+      
+      .colors {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+    
+    .prices h3 {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    margin-bottom: 25px;
+    
+    .image {
+      height: 300px;
+      
+      span {
+        top: 20px;
+        padding: 6px 8px;
+        font-size: 11px;
+      }
+    }
+    
+    .itemDetails h2 {
+      font-size: 14px;
+    }
+    
+    .prices {
+      gap: 15px;
+      
+      h3 {
+        font-size: 15px;
+      }
+    }
+  }
 }
