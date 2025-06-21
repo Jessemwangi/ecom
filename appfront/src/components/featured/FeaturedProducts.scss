@@ -1,27 +1,83 @@
-.featuresProduct{
-    margin: 100px 200px;
+.featuresProduct {
+  margin: 50px 20px; // Responsive margins
+  max-width: 1200px; // Prevent content from getting too wide
+  margin-left: auto;
+  margin-right: auto;
 
-.top{
-
+  .top {
     display: flex;
-    align-items: center;
+    align-items: flex-start; // Better alignment for wrapping text
     justify-content: space-between;
-    margin-bottom: 50px;
-
-    h1{
-        flex: 2;
-        text-transform: capitalize;
+    margin-bottom: 30px;
+    gap: 20px; // Add gap for better spacing
+    
+    // Stack vertically on mobile
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 15px;
     }
-
-    p{
-        flex: 3;
-        color: grey;
+    
+    h1 {
+      flex: 1;
+      text-transform: capitalize;
+      margin: 0; // Remove default margins
+      
+      @media (max-width: 768px) {
+        font-size: 1.8rem;
+      }
     }
+    
+    p {
+      flex: 2;
+      color: grey;
+      line-height: 1.6;
+      margin: 0; // Remove default margins
+      
+      @media (max-width: 768px) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: center;
+    gap: 20px; // Reduced gap
+    flex-wrap: wrap; // Allow cards to wrap to new lines
+    
+    // Responsive gaps
+    @media (max-width: 1024px) {
+      gap: 15px;
+    }
+    
+    @media (max-width: 768px) {
+      gap: 10px;
+      justify-content: space-around; // Better distribution on mobile
+    }
+    
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+  }
 }
-    .bottom {
-display: flex;
-justify-content: center;
-gap: 50px;
 
-    };
+// Additional responsive margins
+@media (max-width: 1024px) {
+  .featuresProduct {
+    margin: 40px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .featuresProduct {
+    margin: 30px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featuresProduct {
+    margin: 20px 5px;
+  }
 }
