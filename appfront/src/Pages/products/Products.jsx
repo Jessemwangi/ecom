@@ -5,7 +5,7 @@ import List from "../../components/List/List";
 import UseFetch from "../../hooks/useFetch";
 
 const Products = () => {
-  const id = parseInt(useParams().id);
+  const id = useParams().id;
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState("asc");
   const [selectsubCat, setSelectsubCat] = useState([]);
@@ -44,7 +44,7 @@ const Products = () => {
               value={item.id}
               onChange={(e) => handleCatChange(e, item.id)}
             />
-            <label htmlFor={item.id}>{item.attributes.title}</label>
+            <label htmlFor={item.id}>{item.title}</label>
           </div>
         ))}
       </div>
