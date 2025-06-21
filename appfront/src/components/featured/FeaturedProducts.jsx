@@ -90,7 +90,7 @@ const FeaturedProducts = ({ type }) => {
           ? "Error occurred while loading products"
           : loading
           ? "Loading amazing products..."
-          : data?.map((item) => <Card item={item} key={item.id} />)
+          : data?.map((item) => <Card item={item} key={item.documentId} />)
         }
       </div>
     </div>
