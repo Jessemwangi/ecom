@@ -87,36 +87,6 @@ const Dashboard = () => {
     return `${baseUrl}${imgData.url}`;
   };
 
-  const updateCartQuantity = async (itemIndex, newQuantity) => {
-    try {
-      const res = await makeRequest.put('/cart/update', {
-        itemIndex,
-        quantity: newQuantity,
-      });
-      setCart(res.data);
-    } catch (error) {
-      console.error('Error updating cart:', error);
-    }
-  };
-
-  const removeFromCart = async (itemIndex) => {
-    try {
-      const res = await makeRequest.delete(`/cart/remove/${itemIndex}`);
-      setCart(res.data);
-    } catch (error) {
-      console.error('Error removing from cart:', error);
-    }
-  };
-
-  const removeFromWishlist = async (productId) => {
-    try {
-      const res = await makeRequest.delete(`/wishlist/remove/${productId}`);
-      setWishlist(res.data);
-    } catch (error) {
-      console.error('Error removing from wishlist:', error);
-    }
-  };
-
   const addToCart = async (product) => {
     try {
       const res = await makeRequest.post('/cart/add', {
