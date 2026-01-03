@@ -12,10 +12,12 @@ const customRouter = (innerRouter, extraRoutes = []) => {
   let routes;
   return {
     get prefix() {
-      return innerRouter.prefix;
+      return innerRouter?.prefix || '/profiles';
     },
     get routes() {
-      if (!routes) routes = innerRouter.routes.concat(extraRoutes);
+      if (!routes) {
+        routes = innerRouter?.routes ? innerRouter.routes.concat(extraRoutes) : extraRoutes;
+      }
       return routes;
     },
   };

@@ -2,13 +2,13 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-const defaultRouter = createCoreRouter('api::cart.cart');
+const defaultRouter = createCoreRouter('api::review.review');
 
 const customRouter = (innerRouter, extraRoutes = []) => {
   let routes;
   return {
     get prefix() {
-      return innerRouter?.prefix || '/carts';
+      return innerRouter?.prefix || '/reviews';
     },
     get routes() {
       if (!routes) {
@@ -22,28 +22,23 @@ const customRouter = (innerRouter, extraRoutes = []) => {
 const myExtraRoutes = [
   {
     method: 'GET',
-    path: '/cart/me',
-    handler: 'cart.me',
+    path: '/reviews/me',
+    handler: 'review.myReviews',
+  },
+  {
+    method: 'GET',
+    path: '/reviews/product/:productId',
+    handler: 'review.productReviews',
   },
   {
     method: 'POST',
-    path: '/cart/add',
-    handler: 'cart.addItem',
+    path: '/reviews/create',
+    handler: 'review.createReview',
   },
   {
     method: 'PUT',
-    path: '/cart/update',
-    handler: 'cart.updateItem',
-  },
-  {
-    method: 'DELETE',
-    path: '/cart/remove/:itemIndex',
-    handler: 'cart.removeItem',
-  },
-  {
-    method: 'DELETE',
-    path: '/cart/clear',
-    handler: 'cart.clear',
+    path: '/reviews/:reviewId/helpful',
+    handler: 'review.markHelpful',
   },
 ];
 

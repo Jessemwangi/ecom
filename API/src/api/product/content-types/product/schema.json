@@ -64,7 +64,35 @@
       ]
     },
     "quantity": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
+    },
+    "stockStatus": {
+      "type": "enumeration",
+      "enum": ["in_stock", "low_stock", "out_of_stock"],
+      "default": "in_stock"
+    },
+    "lowStockThreshold": {
+      "type": "integer",
+      "default": 10
+    },
+    "sku": {
+      "type": "string",
+      "unique": true
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "discount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "originalPrice": {
+      "type": "decimal"
     },
     "productsizes": {
       "type": "relation",

@@ -2,13 +2,13 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-const defaultRouter = createCoreRouter('api::cart.cart');
+const defaultRouter = createCoreRouter('api::contact.contact');
 
 const customRouter = (innerRouter, extraRoutes = []) => {
   let routes;
   return {
     get prefix() {
-      return innerRouter?.prefix || '/carts';
+      return innerRouter?.prefix || '/contacts';
     },
     get routes() {
       if (!routes) {
@@ -21,29 +21,14 @@ const customRouter = (innerRouter, extraRoutes = []) => {
 
 const myExtraRoutes = [
   {
-    method: 'GET',
-    path: '/cart/me',
-    handler: 'cart.me',
-  },
-  {
     method: 'POST',
-    path: '/cart/add',
-    handler: 'cart.addItem',
+    path: '/contact/send',
+    handler: 'contact.create',
   },
   {
-    method: 'PUT',
-    path: '/cart/update',
-    handler: 'cart.updateItem',
-  },
-  {
-    method: 'DELETE',
-    path: '/cart/remove/:itemIndex',
-    handler: 'cart.removeItem',
-  },
-  {
-    method: 'DELETE',
-    path: '/cart/clear',
-    handler: 'cart.clear',
+    method: 'GET',
+    path: '/contact/me',
+    handler: 'contact.myMessages',
   },
 ];
 

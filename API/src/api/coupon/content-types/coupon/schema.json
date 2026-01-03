@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coupons",
+  "info": {
+    "singularName": "coupon",
+    "pluralName": "coupons",
+    "displayName": "Coupon",
+    "description": "Discount coupons and promo codes"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "discountType": {
+      "type": "enumeration",
+      "enum": ["percentage", "fixed"],
+      "required": true,
+      "default": "percentage"
+    },
+    "discountValue": {
+      "type": "decimal",
+      "required": true
+    },
+    "minPurchase": {
+      "type": "decimal",
+      "default": 0
+    },
+    "maxDiscount": {
+      "type": "decimal"
+    },
+    "usageLimit": {
+      "type": "integer"
+    },
+    "usedCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "validFrom": {
+      "type": "datetime",
+      "required": true
+    },
+    "validUntil": {
+      "type": "datetime",
+      "required": true
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product"
+    }
+  }
+}

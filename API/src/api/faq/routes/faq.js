@@ -2,13 +2,13 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-const defaultRouter = createCoreRouter('api::cart.cart');
+const defaultRouter = createCoreRouter('api::faq.faq');
 
 const customRouter = (innerRouter, extraRoutes = []) => {
   let routes;
   return {
     get prefix() {
-      return innerRouter?.prefix || '/carts';
+      return innerRouter?.prefix || '/faqs';
     },
     get routes() {
       if (!routes) {
@@ -22,28 +22,18 @@ const customRouter = (innerRouter, extraRoutes = []) => {
 const myExtraRoutes = [
   {
     method: 'GET',
-    path: '/cart/me',
-    handler: 'cart.me',
+    path: '/faqs/category/:category',
+    handler: 'faq.findByCategory',
   },
   {
-    method: 'POST',
-    path: '/cart/add',
-    handler: 'cart.addItem',
+    method: 'GET',
+    path: '/faqs/featured',
+    handler: 'faq.findFeatured',
   },
   {
     method: 'PUT',
-    path: '/cart/update',
-    handler: 'cart.updateItem',
-  },
-  {
-    method: 'DELETE',
-    path: '/cart/remove/:itemIndex',
-    handler: 'cart.removeItem',
-  },
-  {
-    method: 'DELETE',
-    path: '/cart/clear',
-    handler: 'cart.clear',
+    path: '/faqs/:id/helpful',
+    handler: 'faq.markHelpful',
   },
 ];
 

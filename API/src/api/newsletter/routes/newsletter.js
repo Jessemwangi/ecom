@@ -2,13 +2,13 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-const defaultRouter = createCoreRouter('api::cart.cart');
+const defaultRouter = createCoreRouter('api::newsletter.newsletter');
 
 const customRouter = (innerRouter, extraRoutes = []) => {
   let routes;
   return {
     get prefix() {
-      return innerRouter?.prefix || '/carts';
+      return innerRouter?.prefix || '/newsletters';
     },
     get routes() {
       if (!routes) {
@@ -21,29 +21,14 @@ const customRouter = (innerRouter, extraRoutes = []) => {
 
 const myExtraRoutes = [
   {
-    method: 'GET',
-    path: '/cart/me',
-    handler: 'cart.me',
+    method: 'POST',
+    path: '/newsletter/subscribe',
+    handler: 'newsletter.subscribe',
   },
   {
     method: 'POST',
-    path: '/cart/add',
-    handler: 'cart.addItem',
-  },
-  {
-    method: 'PUT',
-    path: '/cart/update',
-    handler: 'cart.updateItem',
-  },
-  {
-    method: 'DELETE',
-    path: '/cart/remove/:itemIndex',
-    handler: 'cart.removeItem',
-  },
-  {
-    method: 'DELETE',
-    path: '/cart/clear',
-    handler: 'cart.clear',
+    path: '/newsletter/unsubscribe',
+    handler: 'newsletter.unsubscribe',
   },
 ];
 

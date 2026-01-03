@@ -1,0 +1,73 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Site Settings",
+    "description": "Global site configuration"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "default": "Kuguza Shops"
+    },
+    "siteDescription": {
+      "type": "text"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "favicon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "contactEmail": {
+      "type": "email"
+    },
+    "contactPhone": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "socialMedia": {
+      "type": "json"
+    },
+    "freeShippingThreshold": {
+      "type": "decimal",
+      "default": 50
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "taxRate": {
+      "type": "decimal",
+      "default": 0
+    },
+    "maintenanceMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "maintenanceMessage": {
+      "type": "text"
+    },
+    "announcementBar": {
+      "type": "json"
+    }
+  }
+}
