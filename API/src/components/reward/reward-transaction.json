@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_reward_reward_transactions",
+  "info": {
+    "displayName": "Reward Transaction",
+    "description": "Reward points transaction history"
+  },
+  "options": {},
+  "attributes": {
+    "points": {
+      "type": "integer",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["earned", "redeemed", "expired"],
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "datetime",
+      "required": true
+    },
+    "orderId": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rewards",
+  "info": {
+    "singularName": "reward",
+    "pluralName": "rewards",
+    "displayName": "Reward",
+    "description": "User rewards and points"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "totalPoints": {
+      "type": "integer",
+      "default": 0
+    },
+    "transactions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "reward.reward-transaction"
+    },
+    "tier": {
+      "type": "enumeration",
+      "enum": ["bronze", "silver", "gold", "platinum"],
+      "default": "bronze"
+    }
+  }
+}
