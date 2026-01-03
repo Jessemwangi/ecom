@@ -12,14 +12,15 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import useAuth from '../../hooks/useAuth';
+import useProfile from '../../hooks/useProfile';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     fullname: '',
-    username: '',
-    email: '',
     phone: '',
     address: '',
     city: '',
@@ -27,28 +28,40 @@ const Profile = () => {
     birthday: '',
     bio: ''
   });
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const { logout, getCurrentUser } = useAuth();
+  const { getProfile, createProfile, updateProfile, loading } = useProfile();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      const userData = JSON.parse(storedUser);
-      setUser(userData);
-      setFormData({
-        fullname: userData.fullname || '',
-        username: userData.username || '',
-        email: userData.email || '',
-        phone: userData.phone || '',
-        address: userData.address || '',
-        city: userData.city || '',
-        country: userData.country || '',
-        birthday: userData.birthday || '',
-        bio: userData.bio || ''
-      });
-    } else {
-      navigate('/login');
-    }
-  }, [navigate]);
+    const fetchUserAndProfile = async () => {
+      const currentUser = getCurrentUser();
+      if (currentUser) {
+        setUser(currentUser);
+        
+        // Fetch user's profile from backend
+        const result = await getProfile(currentUser.id);
+        if (result.success && result.data) {
+          setProfile(result.data);
+          const attrs = result.data.attributes;
+          setFormData({
+            fullname: attrs.fullname || '',
+            phone: attrs.phone || '',
+            address: attrs.address || '',
+            city: attrs.city || '',
+            country: attrs.country || '',
+            birthday: attrs.birthday || '',
+            bio: attrs.bio || ''
+          });
+        }
+      } else {
+        navigate('/login');
+      }
+    };
+
+    fetchUserAndProfile();
+  }, [navigate, getCurrentUser, getProfile]);
 
   const handleChange = (e) => {
     setFormData({
@@ -57,16 +70,37 @@ const Profile = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem('user', JSON.stringify(formData));
-    setUser(formData);
-    setIsEditing(false);
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    const profileData = {
+      ...formData,
+      user: user.id
+    };
+
+    let result;
+    if (profile) {
+      // Update existing profile
+      result = await updateProfile(profile.id, profileData);
+    } else {
+      // Create new profile
+      result = await createProfile(profileData);
+    }
+
+    if (result.success) {
+      setProfile(result.data);
+      setSuccessMessage('Profile saved successfully!');
+      setIsEditing(false);
+      setTimeout(() => setSuccessMessage(''), 3000);
+    } else {
+      setErrorMessage(result.error);
+    }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    navigate('/login');
+    logout();
   };
 
   if (!user) return null;
@@ -138,10 +172,18 @@ const Profile = () => {
             <button
               className="edit-toggle-btn"
               onClick={() => setIsEditing(!isEditing)}
+              disabled={loading}
             >
               {isEditing ? 'Cancel' : 'Edit Profile'}
             </button>
           </div>
+
+          {successMessage && (
+            <div className="success-message">{successMessage}</div>
+          )}
+          {errorMessage && (
+            <div className="error-message">{errorMessage}</div>
+          )}
 
           {isEditing ? (
             <form onSubmit={handleSubmit} className="profile-form">
@@ -167,10 +209,9 @@ const Profile = () => {
                       <PersonOutlineIcon />
                       <input
                         type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        placeholder="Enter your username"
+                        value={user?.username || ''}
+                        disabled
+                        placeholder="Username (read-only)"
                       />
                     </div>
                   </div>
@@ -183,10 +224,9 @@ const Profile = () => {
                       <EmailOutlinedIcon />
                       <input
                         type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Enter your email"
+                        value={user?.email || ''}
+                        disabled
+                        placeholder="Email (read-only)"
                       />
                     </div>
                   </div>
@@ -280,8 +320,8 @@ const Profile = () => {
               </div>
 
               <div className="form-actions">
-                <button type="submit" className="save-btn">
-                  Save Changes
+                <button type="submit" className="save-btn" disabled={loading}>
+                  {loading ? 'Saving...' : 'Save Changes'}
                 </button>
               </div>
             </form>
@@ -296,11 +336,11 @@ const Profile = () => {
                   </div>
                   <div className="detail-item">
                     <label>Username</label>
-                    <p>{formData.username || 'Not provided'}</p>
+                    <p>{user?.username || 'Not provided'}</p>
                   </div>
                   <div className="detail-item">
                     <label>Email Address</label>
-                    <p>{formData.email || 'Not provided'}</p>
+                    <p>{user?.email || 'Not provided'}</p>
                   </div>
                   <div className="detail-item">
                     <label>Phone Number</label>

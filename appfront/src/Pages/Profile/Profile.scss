@@ -236,6 +236,30 @@
         }
       }
 
+      .success-message {
+        background: #d1fae5;
+        color: #065f46;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        font-size: 15px;
+        font-weight: 500;
+        border: 1px solid #6ee7b7;
+        animation: slideDown 0.3s ease-out;
+      }
+
+      .error-message {
+        background: #fee;
+        color: #c33;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        font-size: 15px;
+        font-weight: 500;
+        border: 1px solid #fcc;
+        animation: slideDown 0.3s ease-out;
+      }
+
       .profile-form {
         .form-section {
           margin-bottom: 40px;

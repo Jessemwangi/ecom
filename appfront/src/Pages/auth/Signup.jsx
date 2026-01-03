@@ -6,16 +6,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import useAuth from '../../hooks/useAuth';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    fullname: '',
     username: '',
     email: '',
     password: '',
@@ -23,45 +22,71 @@ const Signup = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(null); // null, true, or false
   const navigate = useNavigate();
+  const { register, loading, error: authError } = useAuth();
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
     setError('');
+
+    // Real-time password confirmation validation
+    if (name === 'confirmPassword') {
+      if (value === '') {
+        setPasswordMatch(null); // No input yet
+      } else if (value === formData.password) {
+        setPasswordMatch(true); // Passwords match
+      } else {
+        setPasswordMatch(false); // Passwords don't match
+      }
+    }
+
+    // Also check when password field changes and confirmPassword has value
+    if (name === 'password' && formData.confirmPassword !== '') {
+      if (value === formData.confirmPassword) {
+        setPasswordMatch(true);
+      } else {
+        setPasswordMatch(false);
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError('');
 
+    // Validate terms acceptance
+    if (!termsAccepted) {
+      setError('You must accept the terms and conditions');
+      return;
+    }
+
+    // Validate password match
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
-      setLoading(false);
       return;
     }
 
+    // Validate password length
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters');
-      setLoading(false);
       return;
     }
 
-    // Simulate API call
-    setTimeout(() => {
-      localStorage.setItem('user', JSON.stringify({
-        fullname: formData.fullname,
-        username: formData.username,
-        email: formData.email
-      }));
+    // Call register from useAuth hook
+    const result = await register(formData);
+
+    if (result.success) {
       navigate('/profile');
-      setLoading(false);
-    }, 1000);
+    } else {
+      setError(result.error);
+    }
   };
 
   const handleSocialSignup = (provider) => {
@@ -79,24 +104,9 @@ const Signup = () => {
           </div>
 
           {error && <div className="error-message">{error}</div>}
+          {authError && <div className="error-message">{authError}</div>}
 
           <form onSubmit={handleSubmit} className="auth-form">
-            <div className="form-group">
-              <label htmlFor="fullname">Full Name</label>
-              <div className="input-wrapper">
-                <BadgeOutlinedIcon className="input-icon" />
-                <input
-                  type="text"
-                  id="fullname"
-                  name="fullname"
-                  placeholder="Enter your full name"
-                  value={formData.fullname}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <div className="input-wrapper">
@@ -154,7 +164,7 @@ const Signup = () => {
 
             <div className="form-group">
               <label htmlFor="confirmPassword">Confirm Password</label>
-              <div className="input-wrapper">
+              <div className={`input-wrapper ${passwordMatch === true ? 'input-success' : passwordMatch === false ? 'input-error' : ''}`}>
                 <LockOutlinedIcon className="input-icon" />
                 <input
                   type={showConfirmPassword ? 'text' : 'password'}
@@ -173,11 +183,26 @@ const Signup = () => {
                   {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                 </button>
               </div>
+              {passwordMatch === false && (
+                <div className="validation-message error">
+                  Passwords do not match
+                </div>
+              )}
+              {passwordMatch === true && (
+                <div className="validation-message success">
+                  Passwords match
+                </div>
+              )}
             </div>
 
             <div className="terms">
               <label>
-                <input type="checkbox" required />
+                <input 
+                  type="checkbox" 
+                  checked={termsAccepted}
+                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                  required 
+                />
                 <span>
                   I agree to the <Link to="/terms">Terms & Conditions</Link> and{' '}
                   <Link to="/privacy">Privacy Policy</Link>

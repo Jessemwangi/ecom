@@ -163,6 +163,50 @@
                 font-size: 22px;
               }
             }
+
+            // Real-time validation states
+            &.input-success {
+              input {
+                border-color: #22c55e;
+                background: #f0fdf4;
+
+                &:focus {
+                  border-color: #22c55e;
+                  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+                }
+              }
+            }
+
+            &.input-error {
+              input {
+                border-color: #ef4444;
+                background: #fef2f2;
+
+                &:focus {
+                  border-color: #ef4444;
+                  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+                }
+              }
+            }
+          }
+
+          // Validation message
+          .validation-message {
+            margin-top: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            animation: slideDown 0.3s ease-out;
+
+            &.success {
+              color: #22c55e;
+            }
+
+            &.error {
+              color: #ef4444;
+            }
           }
         }
 
@@ -422,5 +466,16 @@
   }
   75% {
     transform: translateX(10px);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

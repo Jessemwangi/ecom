@@ -10,16 +10,17 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    identifier: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login, loading, error: authError } = useAuth();
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -31,19 +32,16 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError('');
 
-    // Simulate API call
-    setTimeout(() => {
-      if (formData.username && formData.password) {
-        localStorage.setItem('user', JSON.stringify({ username: formData.username }));
-        navigate('/profile');
-      } else {
-        setError('Please fill in all fields');
-      }
-      setLoading(false);
-    }, 1000);
+    // Call login from useAuth hook
+    const result = await login(formData.identifier, formData.password);
+
+    if (result.success) {
+      navigate('/profile');
+    } else {
+      setError(result.error);
+    }
   };
 
   const handleSocialLogin = (provider) => {
@@ -61,18 +59,19 @@ const Login = () => {
           </div>
 
           {error && <div className="error-message">{error}</div>}
+          {authError && <div className="error-message">{authError}</div>}
 
           <form onSubmit={handleSubmit} className="auth-form">
             <div className="form-group">
-              <label htmlFor="username">Username or Email</label>
+              <label htmlFor="identifier">Username or Email</label>
               <div className="input-wrapper">
                 <PersonOutlineIcon className="input-icon" />
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="identifier"
+                  name="identifier"
                   placeholder="Enter your username or email"
-                  value={formData.username}
+                  value={formData.identifier}
                   onChange={handleChange}
                   required
                 />
