@@ -61,7 +61,8 @@ const Profile = () => {
     };
 
     fetchUserAndProfile();
-  }, [navigate, getCurrentUser, getProfile]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
