@@ -158,11 +158,11 @@ const Dashboard = () => {
               </div>
               <div className="item-actions">
                 <div className="quantity-control">
-                  <button onClick={() => updateCartQuantity(index, item.quantity - 1)}>
+                  <button onClick={() => updateCartQty(index, item.quantity - 1)}>
                     <RemoveIcon />
                   </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => updateCartQuantity(index, item.quantity + 1)}>
+                  <button onClick={() => updateCartQty(index, item.quantity + 1)}>
                     <AddIcon />
                   </button>
                 </div>
