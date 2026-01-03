@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recently_viewed",
+  "info": {
+    "singularName": "recently-viewed",
+    "pluralName": "recently-viewed",
+    "displayName": "Recently Viewed",
+    "description": "Track user's recently viewed products"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "recently_viewed"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product"
+    },
+    "viewedAt": {
+      "type": "datetime",
+      "default": "now"
+    },
+    "sessionId": {
+      "type": "string"
+    }
+  }
+}

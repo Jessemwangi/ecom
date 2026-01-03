@@ -29,6 +29,22 @@
     },
     "subtotal": {
       "type": "decimal"
+    },
+    "productTitle": {
+      "type": "string"
+    },
+    "productImage": {
+      "type": "string"
+    },
+    "originalPrice": {
+      "type": "decimal"
+    },
+    "discount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "availableStock": {
+      "type": "integer"
     }
   }
 }

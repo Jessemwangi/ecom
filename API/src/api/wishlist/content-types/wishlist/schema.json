@@ -17,10 +17,10 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product"
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "wishlist.wishlist-item"
     }
   }
 }

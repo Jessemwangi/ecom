@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_wishlist_items",
+  "info": {
+    "displayName": "Wishlist Item",
+    "description": "Individual item in wishlist"
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "addedAt": {
+      "type": "datetime"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "default": "medium"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "priceWhenAdded": {
+      "type": "decimal"
+    },
+    "notifyOnPriceDrop": {
+      "type": "boolean",
+      "default": false
+    },
+    "notifyWhenInStock": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

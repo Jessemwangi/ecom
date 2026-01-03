@@ -11,6 +11,9 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { makeRequest } from '../../Utility/functions';
+import useAuth from '../../hooks/useAuth';
+import useCart from '../../hooks/useCart';
+import useWishlist from '../../hooks/useWishlist';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('cart');
@@ -24,44 +27,53 @@ const Dashboard = () => {
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [couponLoading, setCouponLoading] = useState(false);
   const navigate = useNavigate();
+  const { getCurrentUser } = useAuth();
+  const { getCart, removeFromCart, updateCartQuantity: updateCartQty, clearCart } = useCart();
+  const { getWishlist, removeFromWishlist } = useWishlist();
 
   const fetchDashboardData = useCallback(async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('authToken');
-      if (!token) {
+      const currentUser = getCurrentUser();
+      if (!currentUser) {
         navigate('/login');
         return;
       }
 
-      // Fetch cart
-      const cartRes = await makeRequest.get('/cart/me');
-      setCart(cartRes.data);
+      // Fetch cart from database
+      const cartResult = await getCart(currentUser.id);
+      if (cartResult.success) {
+        setCart(cartResult.data);
+      }
 
-      // Fetch wishlist
-      const wishlistRes = await makeRequest.get('/wishlist/me');
-      setWishlist(wishlistRes.data);
+      // Fetch wishlist from database
+      const wishlistResult = await getWishlist(currentUser.id);
+      if (wishlistResult.success) {
+        setWishlist(wishlistResult.data);
+      }
 
       // Fetch orders
-      const ordersRes = await makeRequest.get('/orders/me');
-      setOrders(ordersRes.data);
+      const ordersRes = await makeRequest.get(`/orders?filters[user][id][$eq]=${currentUser.id}&populate=*`);
+      setOrders(ordersRes.data.data || []);
 
       // Fetch rewards
-      const rewardsRes = await makeRequest.get('/reward/me');
-      setRewards(rewardsRes.data);
+      const rewardsRes = await makeRequest.get(`/rewards?filters[user][id][$eq]=${currentUser.id}&populate=*`);
+      if (rewardsRes.data.data.length > 0) {
+        setRewards(rewardsRes.data.data[0]);
+      }
 
       // Fetch suggestions (popular products)
       const suggestionsRes = await makeRequest.get('/products?populate=*&pagination[limit]=8');
-      setSuggestions(suggestionsRes.data);
+      setSuggestions(suggestionsRes.data.data || []);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     } finally {
       setLoading(false);
     }
-  }, [navigate]);
+  }, [navigate, getCurrentUser, getCart, getWishlist]);
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
+    const user = getCurrentUser();
     if (!user) {
       navigate('/login');
       return;

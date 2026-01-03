@@ -29,6 +29,40 @@
     "totalItems": {
       "type": "integer",
       "default": 0
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "abandoned",
+        "checked_out"
+      ],
+      "default": "active"
+    },
+    "couponCode": {
+      "type": "string"
+    },
+    "discount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "taxAmount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "shippingCost": {
+      "type": "decimal",
+      "default": 0
+    },
+    "finalTotal": {
+      "type": "decimal",
+      "default": 0
+    },
+    "expiresAt": {
+      "type": "datetime"
+    },
+    "sessionId": {
+      "type": "string"
     }
   }
 }
