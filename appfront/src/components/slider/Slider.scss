@@ -1,45 +1,310 @@
 .slider {
-  height: calc(100vh - 80px);
+  height: 600px;
   width: 100%;
-position: relative;
-overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+
+  @media (max-width: 1024px) {
+    height: 500px;
+  }
+
+  @media (max-width: 768px) {
+    height: 400px;
+  }
+
+  @media (max-width: 480px) {
+    height: 350px;
+  }
 
   .container {
-  //  overflow: hidden;
     display: flex;
     height: 100%;
-    transition: all 1s ease;
-    // transform: translateX(-100vw);
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-    img {
-      height: 100%;
+    .slide {
+      min-width: 100%;
       width: 100%;
-      object-fit: cover;
+      flex-shrink: 0;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.2) 100%
+        );
+        z-index: 1;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        padding: 0 50px;
+        width: 100%;
+
+        @media (max-width: 768px) {
+          padding: 0 30px;
+        }
+
+        @media (max-width: 480px) {
+          padding: 0 20px;
+        }
+
+        .text-container {
+          animation: fadeInUp 1s ease;
+
+          .subtitle {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            background: rgba(102, 126, 234, 0.9);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+
+            @media (max-width: 768px) {
+              font-size: 12px;
+              padding: 6px 15px;
+            }
+          }
+
+          .title {
+            font-size: 64px;
+            font-weight: 800;
+            color: #fff;
+            margin: 15px 0;
+            line-height: 1.2;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+
+            @media (max-width: 1024px) {
+              font-size: 52px;
+            }
+
+            @media (max-width: 768px) {
+              font-size: 38px;
+            }
+
+            @media (max-width: 480px) {
+              font-size: 28px;
+            }
+          }
+
+          .description {
+            font-size: 20px;
+            color: #fff;
+            margin: 20px 0 35px;
+            max-width: 600px;
+            line-height: 1.6;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+
+            @media (max-width: 768px) {
+              font-size: 16px;
+              margin: 15px 0 25px;
+            }
+
+            @media (max-width: 480px) {
+              font-size: 14px;
+            }
+          }
+
+          .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+
+            &:hover {
+              transform: translateY(-3px);
+              box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+
+              .cta-icon {
+                transform: translateX(5px);
+              }
+            }
+
+            .cta-icon {
+              font-size: 16px;
+              transition: transform 0.3s ease;
+            }
+
+            @media (max-width: 768px) {
+              padding: 12px 30px;
+              font-size: 14px;
+            }
+
+            @media (max-width: 480px) {
+              padding: 10px 25px;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+
+      &.dark {
+        .overlay {
+          background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.4) 100%
+          );
+        }
+      }
     }
-
   }
-  .icons {
-    width: fit-content;
-    display: flex;
+
+  // Navigation Arrows
+  .navigation {
     position: absolute;
+    top: 50%;
     left: 0;
     right: 0;
-    bottom: 100px;
-    margin: auto;
-    gap: 8px;
-    
-    .icon {
-      cursor: pointer;
-        width: 50px;
-        height: 50px;
-        border: 1px solid #999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #0000006b;
-        color:#bebbbb;
-       
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 3;
+    pointer-events: none;
+
+    @media (max-width: 768px) {
+      padding: 0 10px;
     }
+
+    .nav-btn {
+      pointer-events: all;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+      svg {
+        color: #333;
+        font-size: 20px;
+      }
+
+      &:hover {
+        background: #fff;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      &.prev {
+        svg {
+          margin-right: 3px;
+        }
+      }
+
+      &.next {
+        svg {
+          margin-left: 3px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        width: 40px;
+        height: 40px;
+
+        svg {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  // Dots Indicator
+  .dots-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+
+    @media (max-width: 768px) {
+      bottom: 20px;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.7);
+        transform: scale(1.2);
+      }
+
+      &.active {
+        background: #fff;
+        width: 35px;
+        border-radius: 6px;
+      }
+
+      @media (max-width: 768px) {
+        width: 10px;
+        height: 10px;
+
+        &.active {
+          width: 28px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,0 +1,303 @@
+.hot-deals {
+  margin: 60px auto;
+  max-width: 1400px;
+  padding: 0 40px;
+  
+  @media (max-width: 1024px) {
+    padding: 0 20px;
+    margin: 50px auto;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 15px;
+    margin: 40px auto;
+  }
+
+  @media (max-width: 665px) {
+    padding: 0 10px;
+    margin: 30px auto;
+  }
+
+  .hot-deals-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      gap: 25px;
+      padding: 25px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 665px) {
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .title-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .fire-icon {
+        font-size: 48px;
+        animation: pulse 2s infinite;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+
+        @media (max-width: 768px) {
+          font-size: 40px;
+        }
+      }
+
+      .title-text {
+        h2 {
+          margin: 0;
+          font-size: 36px;
+          font-weight: 800;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+          @media (max-width: 768px) {
+            font-size: 28px;
+          }
+        }
+
+        p {
+          margin: 5px 0 0;
+          font-size: 16px;
+          opacity: 0.9;
+
+          @media (max-width: 768px) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .countdown {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px 25px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+
+      @media (max-width: 768px) {
+        padding: 12px 20px;
+      }
+
+      .clock-icon {
+        font-size: 28px;
+
+        @media (max-width: 768px) {
+          font-size: 24px;
+        }
+      }
+
+      .countdown-timer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .time-unit {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          min-width: 50px;
+
+          @media (max-width: 768px) {
+            min-width: 40px;
+          }
+
+          .time-value {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1;
+
+            @media (max-width: 768px) {
+              font-size: 24px;
+            }
+          }
+
+          .time-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-top: 4px;
+
+            @media (max-width: 768px) {
+              font-size: 10px;
+            }
+          }
+        }
+
+        .separator {
+          font-size: 28px;
+          font-weight: 700;
+          margin: 0 4px;
+          animation: blink 1s infinite;
+
+          @media (max-width: 768px) {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  .hot-deals-content {
+    .message {
+      text-align: center;
+      padding: 40px;
+      font-size: 18px;
+      color: #666;
+    }
+
+    .products-grid,
+    .fallback-deals {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 15px;
+      }
+
+      @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .fallback-deals {
+      .deal-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .deal-badge {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+          color: white;
+          padding: 8px 15px;
+          border-radius: 20px;
+          font-weight: 700;
+          font-size: 14px;
+          z-index: 1;
+          box-shadow: 0 4px 10px rgba(245, 87, 108, 0.3);
+        }
+
+        img {
+          width: 100%;
+          height: 300px;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+
+          @media (max-width: 768px) {
+            height: 200px;
+          }
+        }
+
+        &:hover img {
+          transform: scale(1.1);
+        }
+
+        .deal-info {
+          padding: 20px;
+
+          @media (max-width: 768px) {
+            padding: 15px;
+          }
+
+          h3 {
+            margin: 0 0 15px;
+            font-size: 18px;
+            color: #333;
+
+            @media (max-width: 768px) {
+              font-size: 16px;
+              margin: 0 0 10px;
+            }
+          }
+
+          .price {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            .old-price {
+              font-size: 16px;
+              color: #999;
+              text-decoration: line-through;
+
+              @media (max-width: 768px) {
+                font-size: 14px;
+              }
+            }
+
+            .new-price {
+              font-size: 24px;
+              font-weight: 700;
+              color: #f5576c;
+
+              @media (max-width: 768px) {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}

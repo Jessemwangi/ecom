@@ -1,4 +1,16 @@
-.home{
-    
-    
+.home {
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+  min-height: 100vh;
+  
+  // Add subtle animation on load
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

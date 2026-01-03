@@ -2,13 +2,52 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Categories.scss';
 import UseFetch from '../../hooks/useFetch';
+import LoadingSpinner from '../Loading/LoadingSpinner';
+import EmptyState from '../EmptyState/EmptyState';
 
 const Categories = () => {
     const { data, loading, error } = UseFetch(`/categories?populate=*`);
     
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error loading categories</p>;
-    if (!data || data.length === 0) return <p>No categories available</p>;
+    if (loading) {
+        return (
+            <div className="categories-container">
+                <div className="row">
+                    <h1>Select Category</h1>
+                </div>
+                <LoadingSpinner message="Loading categories for you..." />
+            </div>
+        );
+    }
+    
+    if (error) {
+        return (
+            <div className="categories-container">
+                <div className="row">
+                    <h1>Select Category</h1>
+                </div>
+                <EmptyState 
+                    icon="😕"
+                    title="Couldn't Load Categories"
+                    message="We're having trouble loading the categories. Please check your connection and try again."
+                />
+            </div>
+        );
+    }
+    
+    if (!data || data.length === 0) {
+        return (
+            <div className="categories-container">
+                <div className="row">
+                    <h1>Select Category</h1>
+                </div>
+                <EmptyState 
+                    icon="🏷️"
+                    title="Categories Coming Soon!"
+                    message="We're organizing amazing product categories just for you. Check back soon to explore our curated collections!"
+                />
+            </div>
+        );
+    }
 
     // Helper function to get image URL
     const getImageUrl = (imgData) => {

@@ -14,209 +14,215 @@
 		text-transform: capitalize;
 		color: purple;
 	}
+
+	.reviews-header {
+		margin-bottom: 30px;
+	}
+
+	.rating-summary {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		padding: 20px;
+		background: white;
+		border-radius: 8px;
+		margin: 20px;
+
+		.average-rating {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 8px;
+
+			.rating-number {
+				font-size: 48px;
+				font-weight: bold;
+				color: #6441a5;
+			}
+
+			.stars {
+				display: flex;
+				gap: 2px;
+			}
+
+			.total-reviews {
+				font-size: 14px;
+				color: #666;
+			}
+		}
+	}
+
+	.review-form {
+		background: white;
+		padding: 25px;
+		margin: 20px;
+		border-radius: 8px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+		h3 {
+			margin-bottom: 20px;
+			color: #6441a5;
+		}
+
+		.rating-input {
+			margin-bottom: 20px;
+
+			label {
+				display: block;
+				margin-bottom: 8px;
+				font-weight: 600;
+			}
+
+			.star-selection {
+				display: flex;
+				gap: 5px;
+			}
+		}
+
+		.form-group {
+			margin-bottom: 15px;
+
+			input,
+			textarea {
+				width: 100%;
+				padding: 12px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				font-family: inherit;
+				font-size: 14px;
+
+				&:focus {
+					outline: none;
+					border-color: #6441a5;
+				}
+			}
+		}
+
+		.submit-review-btn {
+			background: #6441a5;
+			color: white;
+			padding: 12px 30px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: 600;
+			transition: background 0.3s;
+
+			&:hover {
+				background: #52348e;
+			}
+
+			&:disabled {
+				background: #ccc;
+				cursor: not-allowed;
+			}
+		}
+	}
+
+	.no-reviews {
+		padding: 40px;
+		text-align: center;
+		color: #666;
+		background: white;
+		margin: 20px;
+		border-radius: 8px;
+	}
 }
 
 .comments-list {
 	position: relative;
 	list-style-type: none;
+	padding: 0 20px;
+
 	li {
-		margin-bottom: 15px;
+		margin-bottom: 20px;
 		display: block;
 		position: relative;
-	}
-	&:before,
-	&:after {
-		content: "";
-		background: #fff;
-		position: absolute;
-	}
-	&:before {
-		width: 2px;
-		height: 100%;
-		left: 32px;
-		top: 0;
-	}
-	&:after {
-		bottom: 0;
-		left: 27px;
-		width: 7px;
-		height: 7px;
-		border: 3px solid #2d2a3c;
-		-webkit-border-radius: 50%;
-		-moz-border-radius: 50%;
-		border-radius: 50%;
-	}
-}
-
-.reply-list {
-	position: relative;
-	margin-left: 84px;
-	&:before,
-	&:after {
-		content: "";
-		position: absolute;
-		background: #fff;
-	}
-	&:before {
-		width: 2px;
-		height: 100%;
-		left: 25px;
-		top: 0;
-	}
-	&:after {
-		bottom: 0;
-		left: 20px;
-		width: 7px;
-		height: 7px;
-		border: 3px solid #2d2a3c;
-		border-radius: 50%;
-	}
-	li {
-		margin-top: 15px;
-	}
-	.comment-main-level:before {
-		content: "";
-		width: 60px;
-		height: 2px;
-		background: #fff;
-		position: absolute;
-		top: 25px;
-		left: -50px;
-	}
-	.reply-list {
-		margin-left: 70px;
-		.comment-main-level:before {
-			left: -45px;
-		}
+		background: white;
+		border-radius: 8px;
+		padding: 15px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	}
 }
 
 .comment-main-level {
-	position: relative;
+	display: flex;
+	gap: 15px;
 }
 
-/**
- * Avatar
- ---------------------------*/
-
-.comments-list {
-	.comment-avatar {
-		width: 65px;
-		height: 65px;
-		position: relative;
-		z-index: 99;
-		background: #dee1e3;
-		float: left;
-		border: 3px solid #fff;
-		-webkit-border-radius: 4px;
-		-moz-border-radius: 4px;
-		border-radius: 4px;
-		-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-		-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-		overflow: hidden;
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			transform: scale(2.5);
-		}
+.comment-avatar {
+	flex-shrink: 0;
+	img {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		object-fit: cover;
 	}
-}
-
-.reply-list .comment-avatar {
-	width: 50px;
-	height: 50px;
-}
-
-.comment-main-level:after {
-	content: "";
-	width: 0;
-	height: 0;
-	display: block;
-	clear: both;
-}
-
-/**
- * Comment-Box
- ---------------------------*/
-
-.comments-list {
-	.comment-box {
-		width: calc(100% - 85px);
-		float: right;
-		position: relative;
-		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-		&:before,
-		&:after {
-			content: "";
-			height: 0;
-			width: 0;
-			position: absolute;
-			display: block;
-			border-width: 10px 12px 10px 0;
-			border-style: solid;
-			border-color: transparent #fcfcfc;
-			top: 8px;
-			left: -11px;
-		}
-	}
-}
-
-.reply-list .comment-box {
-	width: calc(100% - 70px);
 }
 
 .comment-box {
+	flex: 1;
+
 	.comment-head {
-		background: #fcfcfc;
-		padding: 10px 12px;
-		border-bottom: 1px solid #e5e5e5;
-		overflow: hidden;
-		border-radius: 4px 4px 0 0;
-		span {
-			float: left;
-			color: #999;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		margin-bottom: 10px;
+
+		.comment-name {
+			margin: 0;
+			font-size: 16px;
+			font-weight: 600;
+			color: #333;
+			display: flex;
+			align-items: center;
+		}
+
+		.review-rating {
+			display: flex;
+			gap: 2px;
+		}
+
+		.review-date {
 			font-size: 13px;
-			position: relative;
-			top: 1px;
+			color: #999;
+			margin-left: auto;
 		}
 	}
-	.comment-name {
-		color: #03658c;
-		font-size: 14px;
-		font-weight: 700;
-		float: left;
-		margin-right: 10px;
-		a {
-			color: #03658c;
-		}
-		&.by-author {
-			color: #03658c;
-			&:after {
-				content: "author";
-				background: #03658c;
-				color: #fff;
-				font-size: 12px;
-				padding: 3px 5px;
-				font-weight: 700;
-				margin-left: 10px;
-				-webkit-border-radius: 3px;
-				-moz-border-radius: 3px;
-				border-radius: 3px;
-			}
-			a {
-				color: #03658c;
-			}
-		}
-	}
-	.comment-content {
-		background: #fff;
-		padding: 12px;
+
+	.review-title {
+		margin-bottom: 8px;
+		color: #6441a5;
 		font-size: 15px;
-		color: #595959;
-		-webkit-border-radius: 0 0 4px 4px;
-		-moz-border-radius: 0 0 4px 4px;
-		border-radius: 0 0 4px 4px;
+	}
+
+	.comment-content {
+		color: #555;
+		line-height: 1.6;
+		font-size: 14px;
+		margin-bottom: 12px;
+	}
+
+	.review-actions {
+		.helpful-btn {
+			background: transparent;
+			border: 1px solid #ddd;
+			padding: 6px 12px;
+			border-radius: 4px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			font-size: 13px;
+			color: #666;
+			transition: all 0.3s;
+
+			&:hover {
+				border-color: #6441a5;
+				color: #6441a5;
+			}
+		}
 	}
 }

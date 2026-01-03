@@ -6,7 +6,7 @@ import CompareOutlinedIcon from "@mui/icons-material/CompareOutlined";
 import { Slider } from "@mui/material";
 import UseFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
-import Comments from "../../components/Comments/Comments";
+import Reviews from "../../components/Comments/Reviews";
 import { buildImageUrl } from "../../Utility/imageHelper";
 
 const Product = () => {
@@ -135,7 +135,7 @@ const Product = () => {
               </div>
             </div>
             <div className="lower">
-              <Comments/>
+              <Reviews productId={id} />
             </div>
           </div>
         )

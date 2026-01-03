@@ -1,0 +1,225 @@
+.newsletter {
+  margin: 80px auto;
+  max-width: 1400px;
+  padding: 0 40px;
+
+  @media (max-width: 1024px) {
+    padding: 0 20px;
+    margin: 60px auto;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 15px;
+    margin: 50px auto;
+  }
+
+  .newsletter-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 24px;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    @media (max-width: 1024px) {
+      padding: 50px 60px;
+      gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 40px 30px;
+      gap: 25px;
+      border-radius: 16px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 30px 20px;
+    }
+
+    .newsletter-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      color: white;
+      position: relative;
+      z-index: 1;
+
+      @media (max-width: 768px) {
+        gap: 15px;
+      }
+
+      .mail-icon {
+        font-size: 64px;
+        animation: bounce 2s infinite;
+
+        @media (max-width: 768px) {
+          font-size: 48px;
+        }
+      }
+
+      .text-content {
+        h2 {
+          margin: 0;
+          font-size: 36px;
+          font-weight: 800;
+          text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+
+          @media (max-width: 1024px) {
+            font-size: 32px;
+          }
+
+          @media (max-width: 768px) {
+            font-size: 26px;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 22px;
+          }
+        }
+
+        p {
+          margin: 12px 0 0;
+          font-size: 18px;
+          opacity: 0.95;
+          max-width: 600px;
+
+          @media (max-width: 768px) {
+            font-size: 16px;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      input {
+        flex: 1;
+        padding: 18px 28px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        font-size: 16px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.95);
+        transition: all 0.3s ease;
+
+        &:focus {
+          border-color: white;
+          background: white;
+          box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+
+        @media (max-width: 768px) {
+          padding: 16px 24px;
+          font-size: 15px;
+        }
+      }
+
+      button {
+        padding: 18px 40px;
+        background: white;
+        color: #667eea;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        svg {
+          font-size: 20px;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+          svg {
+            transform: translateX(5px);
+          }
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+          padding: 16px 32px;
+          font-size: 15px;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, 20px);
+  }
+}

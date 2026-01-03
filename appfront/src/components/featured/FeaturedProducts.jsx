@@ -2,6 +2,8 @@ import React from "react";
 import "./FeaturedProducts.scss";
 import Card from "../Card/Card";
 import UseFetch from "../../hooks/useFetch";
+import ProductSkeleton from "../Loading/ProductSkeleton";
+import EmptyState from "../EmptyState/EmptyState";
 
 export const items = [
   {
@@ -84,12 +86,23 @@ const FeaturedProducts = ({ type }) => {
         </p>
       </div>
       <div className="bottom">
-        {error
-          ? "Error occurred while loading products"
-          : loading
-          ? "Loading amazing products..."
-          : data?.map((item) => <Card item={item} key={item.documentId} />)
-        }
+        {error ? (
+          <EmptyState 
+            icon="😕"
+            title="Oops! Something went wrong"
+            message="We couldn't load the products. Please refresh the page or try again later."
+          />
+        ) : loading ? (
+          <ProductSkeleton count={4} />
+        ) : data && data.length > 0 ? (
+          data.map((item) => <Card item={item} key={item.documentId} />)
+        ) : (
+          <EmptyState 
+            icon="✨"
+            title="Exciting Products Coming Soon!"
+            message={`We're curating an amazing selection of ${type} products just for you. Stay tuned for incredible deals and premium quality items!`}
+          />
+        )}
       </div>
     </div>
   );
