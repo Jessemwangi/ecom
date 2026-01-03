@@ -12,11 +12,10 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import useAuth from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 import useProfile from '../../hooks/useProfile';
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -31,17 +30,14 @@ const Profile = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-  const { logout, getCurrentUser } = useAuth();
+  const { user, logout } = useAuth();
   const { getProfile, createProfile, updateProfile, loading } = useProfile();
 
   useEffect(() => {
-    const fetchUserAndProfile = async () => {
-      const currentUser = getCurrentUser();
-      if (currentUser) {
-        setUser(currentUser);
-        
+    const fetchUserProfile = async () => {
+      if (user) {
         // Fetch user's profile from backend
-        const result = await getProfile(currentUser.id);
+        const result = await getProfile(user.id);
         if (result.success && result.data) {
           setProfile(result.data);
           const attrs = result.data.attributes;
@@ -60,9 +56,8 @@ const Profile = () => {
       }
     };
 
-    fetchUserAndProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchUserProfile();
+  }, [user, navigate, getProfile]);
 
   const handleChange = (e) => {
     setFormData({

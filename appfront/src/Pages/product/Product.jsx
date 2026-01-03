@@ -9,7 +9,7 @@ import UseFetch from "../../hooks/useFetch";
 import { useParams, useNavigate } from "react-router-dom";
 import Reviews from "../../components/Comments/Reviews";
 import { buildImageUrl } from "../../Utility/imageHelper";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../contexts/AuthContext";
 import useCart from "../../hooks/useCart";
 import useWishlist from "../../hooks/useWishlist";
 import useRecentlyViewed from "../../hooks/useRecentlyViewed";
@@ -18,7 +18,7 @@ const Product = () => {
   const id = useParams().id;
   const navigate = useNavigate();
   const { data, loading, error } = UseFetch(`/products/${id}?populate=*`);
-  const { getCurrentUser } = useAuth();
+  const { user } = useAuth();
   const { addToCart, loading: cartLoading } = useCart();
   const { addToWishlist, isInWishlist, loading: wishlistLoading } = useWishlist();
   const { trackView } = useRecentlyViewed();
@@ -33,11 +33,10 @@ const Product = () => {
 
   // Track product view when component loads
   useEffect(() => {
-    const user = getCurrentUser();
     if (user && id) {
       trackView(user.id, parseInt(id));
     }
-  }, [id, getCurrentUser, trackView]);
+  }, [id, user, trackView]);
 
   const handleColorChange = (e) => {
     e.preventDefault();
@@ -47,7 +46,6 @@ const Product = () => {
   };
 
   const handleAddToCart = async () => {
-    const user = getCurrentUser();
     if (!user) {
       navigate('/login');
       return;
@@ -83,7 +81,6 @@ const Product = () => {
   };
 
   const handleAddToWishlist = async () => {
-    const user = getCurrentUser();
     if (!user) {
       navigate('/login');
       return;

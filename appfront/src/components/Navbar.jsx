@@ -10,6 +10,7 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import { Link } from "react-router-dom";
 import Cart from "./Cart/Cart";
 import UseFetch from "../hooks/useFetch";
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
   const [openCart, setOpenCart] = useState(false);
@@ -20,18 +21,10 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  const { user } = useAuth();
 
   // Fetch categories with subcategories
   const { data: categories } = UseFetch('/categories?populate=*');
-
-  // Check if user is logged in
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
 
   // Get image URL helper
   const getImageUrl = (imgData) => {

@@ -11,7 +11,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { makeRequest } from '../../Utility/functions';
-import useAuth from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 import useCart from '../../hooks/useCart';
 import useWishlist from '../../hooks/useWishlist';
 
@@ -27,37 +27,36 @@ const Dashboard = () => {
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [couponLoading, setCouponLoading] = useState(false);
   const navigate = useNavigate();
-  const { getCurrentUser } = useAuth();
+  const { user } = useAuth();
   const { getCart, removeFromCart, updateCartQuantity: updateCartQty, clearCart } = useCart();
   const { getWishlist, removeFromWishlist } = useWishlist();
 
   const fetchDashboardData = useCallback(async () => {
     setLoading(true);
     try {
-      const currentUser = getCurrentUser();
-      if (!currentUser) {
+      if (!user) {
         navigate('/login');
         return;
       }
 
       // Fetch cart from database
-      const cartResult = await getCart(currentUser.id);
+      const cartResult = await getCart(user.id);
       if (cartResult.success) {
         setCart(cartResult.data);
       }
 
       // Fetch wishlist from database
-      const wishlistResult = await getWishlist(currentUser.id);
+      const wishlistResult = await getWishlist(user.id);
       if (wishlistResult.success) {
         setWishlist(wishlistResult.data);
       }
 
       // Fetch orders
-      const ordersRes = await makeRequest.get(`/orders?filters[user][id][$eq]=${currentUser.id}&populate=*`);
+      const ordersRes = await makeRequest.get(`/orders?filters[user][id][$eq]=${user.id}&populate=*`);
       setOrders(ordersRes.data.data || []);
 
       // Fetch rewards
-      const rewardsRes = await makeRequest.get(`/rewards?filters[user][id][$eq]=${currentUser.id}&populate=*`);
+      const rewardsRes = await makeRequest.get(`/rewards?filters[user][id][$eq]=${user.id}&populate=*`);
       if (rewardsRes.data.data.length > 0) {
         setRewards(rewardsRes.data.data[0]);
       }
@@ -70,10 +69,9 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
-  }, [navigate, getCurrentUser, getCart, getWishlist]);
+  }, [navigate, user, getCart, getWishlist]);
 
   useEffect(() => {
-    const user = getCurrentUser();
     if (!user) {
       navigate('/login');
       return;

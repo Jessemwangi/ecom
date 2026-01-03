@@ -3,7 +3,7 @@
   "collectionName": "recently_viewed",
   "info": {
     "singularName": "recently-viewed",
-    "pluralName": "recently-viewed",
+    "pluralName": "recently-vieweds",
     "displayName": "Recently Viewed",
     "description": "Track user's recently viewed products"
   },

@@ -1,5 +1,6 @@
 import './App.scss';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext';
 import Layout from './Pages/Layout';
 import Product from './Pages/product/Product';
 import Products from './Pages/products/Products';
@@ -67,9 +68,11 @@ element:<Product/>
 )
 function App() {
   return (
-    <div className="app">
-            <RouterProvider router={router} />
-    </div>
+    <AuthProvider>
+      <div className="app">
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
   );
 }
 
