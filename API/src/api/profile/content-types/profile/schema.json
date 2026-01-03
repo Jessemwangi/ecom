@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profiles",
+  "info": {
+    "singularName": "profile",
+    "pluralName": "profiles",
+    "displayName": "Profile",
+    "description": "User profile information"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "fullname": {
+      "type": "string",
+      "required": false
+    },
+    "phone": {
+      "type": "string",
+      "required": false
+    },
+    "address": {
+      "type": "string",
+      "required": false
+    },
+    "city": {
+      "type": "string",
+      "required": false
+    },
+    "country": {
+      "type": "string",
+      "required": false
+    },
+    "postalCode": {
+      "type": "string",
+      "required": false
+    },
+    "birthday": {
+      "type": "date",
+      "required": false
+    },
+    "bio": {
+      "type": "text",
+      "required": false
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "shippingAddress": {
+      "type": "component",
+      "repeatable": true,
+      "component": "address.shipping-address"
+    },
+    "preferences": {
+      "type": "json",
+      "required": false
+    }
+  }
+}
