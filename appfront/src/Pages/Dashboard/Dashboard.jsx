@@ -67,7 +67,8 @@ const Dashboard = () => {
       return;
     }
     fetchDashboardData();
-  }, [navigate, fetchDashboardData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getImageUrl = (imgData) => {
     if (!imgData) return 'https://images.pexels.com/photos/3756346/pexels-photo-3756346.jpeg?auto=compress&cs=tinysrgb&w=300';

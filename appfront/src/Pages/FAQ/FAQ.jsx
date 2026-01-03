@@ -37,7 +37,8 @@ const FAQ = () => {
 
   useEffect(() => {
     fetchFAQs();
-  }, [fetchFAQs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCategory]);
 
   const handleMarkHelpful = async (faqId) => {
     try {
